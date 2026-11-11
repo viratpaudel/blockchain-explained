@@ -14,6 +14,7 @@
    - [03. Smart Contracts & EVM](docs/03-smart-contracts-and-evm.md)
    - [04. Layer 2 & Scalability (Rollups, ZK, Sharding)](docs/04-layer2-and-scalability.md)
    - [05. DeFi & Web3 Ecosystem](docs/05-defi-and-web3-ecosystem.md)
+   - [06. Security & Attack Vectors](docs/06-security-and-attacks.md)
 4. [Python Reference Implementation](#-python-reference-implementation)
 5. [The Blockchain Trilemma](#-the-blockchain-trilemma)
 6. [Security & Attack Vectors](#-security--attack-vectors)
@@ -91,6 +92,7 @@ Transactions represent state transitions. Every node processes the identical seq
 | **[03. Smart Contracts & EVM](docs/03-smart-contracts-and-evm.md)** | Programmable Ledgers | Turing-complete execution, gas economics, bytecode, storage layouts, and ERC token standards. |
 | **[04. Layer 2 & Scalability](docs/04-layer2-and-scalability.md)** | Scaling the Trilemma | State channels, Optimistic Rollups (fault proofs), ZK-Rollups (validity proofs), and Sharding. |
 | **[05. DeFi & Web3 Ecosystem](docs/05-defi-and-web3-ecosystem.md)** | Financial Primitives | Automated Market Makers (AMM), lending protocols, decentralized oracles, and MEV. |
+| **[06. Security & Attacks](docs/06-security-and-attacks.md)** | Exploits & Defenses | 51% reorgs, reentrancy (The DAO), flash loan oracle manipulation, and audit checklists. |
 
 ---
 
