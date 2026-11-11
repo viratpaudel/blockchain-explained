@@ -6,7 +6,8 @@ Merkle roots, cryptographic transaction verification, and ledger consensus.
 
 from .block import Block
 from .blockchain import Blockchain
+from .node import Node
 from .transaction import Transaction
 from .wallet import Wallet
 
-__all__ = ["Block", "Blockchain", "Transaction", "Wallet"]
+__all__ = ["Block", "Blockchain", "Node", "Transaction", "Wallet"]

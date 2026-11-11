@@ -1,6 +1,7 @@
 import unittest
 from src.block import Block, compute_merkle_root
 from src.blockchain import Blockchain
+from src.node import Node
 from src.transaction import Transaction
 from src.wallet import Wallet
 
@@ -72,6 +73,19 @@ class TestBlockchain(unittest.TestCase):
         self.assertTrue(tx.is_valid())
         self.assertEqual(tx.sender, wallet_a.address)
         self.assertEqual(tx.recipient, wallet_b.address)
+
+    def test_node_p2p_consensus_longest_chain(self):
+        node_a = Node("NodeA", difficulty=1)
+        node_b = Node("NodeB", difficulty=1)
+        node_a.connect_peer(node_b)
+
+        # Node A mines two blocks
+        node_a.mine_and_broadcast("MinerA")
+        node_a.mine_and_broadcast("MinerA")
+
+        # Node B should automatically adopt the longest chain from Node A
+        self.assertEqual(len(node_b.blockchain.chain), 3)
+        self.assertEqual(node_b.blockchain.get_latest_block().hash, node_a.blockchain.get_latest_block().hash)
 
     def test_chain_tamper_detection(self):
         self.chain.mine_pending_transactions("Miner1")
