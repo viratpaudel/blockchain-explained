@@ -2,6 +2,7 @@ import unittest
 from src.block import Block, compute_merkle_root
 from src.blockchain import Blockchain
 from src.transaction import Transaction
+from src.wallet import Wallet
 
 
 class TestBlockchain(unittest.TestCase):
@@ -60,6 +61,17 @@ class TestBlockchain(unittest.TestCase):
         tx2_tampered = Transaction("B", "C", 5.1, timestamp=101.0, signature="sig2")
         root3 = compute_merkle_root([tx1, tx2_tampered])
         self.assertNotEqual(root1, root3)
+
+    def test_wallet_address_derivation_and_tx_signing(self):
+        wallet_a = Wallet("Alice")
+        wallet_b = Wallet("Bob")
+        self.assertTrue(wallet_a.address.startswith("0x"))
+        self.assertEqual(len(wallet_a.address), 42)
+
+        tx = wallet_a.create_transaction(wallet_b.address, 15.0)
+        self.assertTrue(tx.is_valid())
+        self.assertEqual(tx.sender, wallet_a.address)
+        self.assertEqual(tx.recipient, wallet_b.address)
 
     def test_chain_tamper_detection(self):
         self.chain.mine_pending_transactions("Miner1")
