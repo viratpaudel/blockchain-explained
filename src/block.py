@@ -103,3 +103,7 @@ class Block:
 
     def __repr__(self) -> str:
         return f"<Block #{self.index} [Hash: {self.hash[:10]}.. Nonce: {self.nonce}]>"
+
+    def transaction_count(self) -> int:
+        """Returns the number of transactions in this block."""
+        return len(self.transactions)
