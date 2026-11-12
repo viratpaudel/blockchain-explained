@@ -77,6 +77,14 @@ class Blockchain:
         self.pending_transactions.append(transaction)
         return True
 
+    def get_chain_length(self) -> int:
+        """Returns the total number of blocks in the chain including genesis."""
+        return len(self.chain)
+
+    def get_pending_count(self) -> int:
+        """Returns the number of transactions currently awaiting mining."""
+        return len(self.pending_transactions)
+
     def mine_pending_transactions(self, miner_address: str) -> Block:
         """
         Batches pending transactions, mints the coinbase block reward,
@@ -159,3 +167,11 @@ class Blockchain:
                 return False
 
         return True
+
+    def get_chain_length(self) -> int:
+        """Returns the total number of blocks in the chain including genesis."""
+        return len(self.chain)
+
+    def get_pending_count(self) -> int:
+        """Returns the number of transactions currently awaiting mining."""
+        return len(self.pending_transactions)
