@@ -34,3 +34,7 @@ class Wallet:
 
     def __repr__(self) -> str:
         return f"<Wallet {self.name} [{self.address[:8]}...{self.address[-4:]}]>"
+
+    def get_balance(self, blockchain) -> float:
+        """Queries the blockchain ledger and returns this wallet's current balance."""
+        return blockchain.get_balance(self.address)
