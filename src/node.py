@@ -65,3 +65,12 @@ class Node:
 
     def __repr__(self) -> str:
         return f"<Node {self.node_id} (Blocks: {len(self.blockchain.chain)}, Peers: {len(self.peers)})>"
+
+    def disconnect_peer(self, peer: "Node") -> None:
+        """Removes a bidirectional peer connection (simulates a network partition)."""
+        self.peers.discard(peer)
+        peer.peers.discard(self)
+
+    def peer_count(self) -> int:
+        """Returns the number of active peer connections."""
+        return len(self.peers)
