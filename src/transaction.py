@@ -61,3 +61,8 @@ class Transaction:
 
     def __repr__(self) -> str:
         return f"<Tx {self.sender[:8]}.. -> {self.recipient[:8]}..: {self.amount} SETU>"
+
+    def to_summary(self) -> str:
+        """Returns a compact one-line summary string of the transaction."""
+        status = "signed" if self.signature else "unsigned"
+        return f"[{status}] {self.sender[:10]} -> {self.recipient[:10]} : {self.amount} SETU"
