@@ -1,5 +1,6 @@
 import hashlib
 import json
+import math
 import time
 from typing import Any, Dict, Optional
 
@@ -47,7 +48,10 @@ class Transaction:
         if self.sender in ("COINBASE", "NETWORK"):
             return self.amount > 0
 
-        if self.amount <= 0:
+        if not self.sender or not self.recipient:
+            return False
+
+        if not math.isfinite(self.amount) or self.amount <= 0:
             return False
 
         if not self.signature:
