@@ -101,6 +101,15 @@ class Blockchain:
         3. Recalculates Merkle roots to detect transaction alterations.
         4. Verifies Proof of Work difficulty constraint.
         """
+        if not self.chain:
+            return False
+
+        genesis = self.chain[0]
+        if genesis.index != 0 or genesis.previous_hash != "0" * 64:
+            return False
+        if genesis.compute_hash() != genesis.hash or not genesis.has_valid_transactions():
+            return False
+
         target_prefix = "0" * self.difficulty
 
         for i in range(1, len(self.chain)):
