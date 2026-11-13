@@ -42,7 +42,7 @@ class Block:
         self.index = index
         self.transactions = transactions
         self.previous_hash = previous_hash
-        self.timestamp = timestamp or time.time()
+        self.timestamp = time.time() if timestamp is None else timestamp
         self.nonce = nonce
         self.merkle_root = merkle_root or compute_merkle_root(transactions)
         self.hash = self.compute_hash()
