@@ -44,7 +44,11 @@ class Blockchain:
         # Verify sender has sufficient balance (except coinbase/system transactions)
         if transaction.sender not in ("COINBASE", "NETWORK"):
             sender_balance = self.get_balance(transaction.sender)
-            if sender_balance < transaction.amount:
+            pending_spend = sum(
+                tx.amount for tx in self.pending_transactions
+                if tx.sender == transaction.sender
+            )
+            if sender_balance - pending_spend < transaction.amount:
                 return False
 
         self.pending_transactions.append(transaction)
