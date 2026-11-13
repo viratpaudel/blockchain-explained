@@ -23,7 +23,9 @@ A cryptographic hash function maps input data of arbitrary size to a fixed-size 
 
 ## 2. Asymmetric Cryptography & Digital Signatures
 
-Blockchains use public-key cryptography (typically elliptic curve cryptography like `secp256k1` or `Ed25519`):
+Blockchains use public-key cryptography (typically elliptic curve cryptography like `secp256k1` or `Ed25519`). The Python wallet in this repository is an educational simulator: its address is a hash of private-key text, and its transaction signature is a plain hash, not an elliptic-curve signature. It does not provide the verification or key protection required for real funds. Do not reuse real wallet keys with this code.
+
+A production system derives a public key from the private key using a reviewed curve implementation and verifies signatures against the public key:
 
 - **Private Key**: A randomly generated 256-bit number known strictly to the owner.
 - **Public Key**: Derived mathematically from the private key via elliptic curve point multiplication ($K = k \cdot G$).
