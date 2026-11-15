@@ -82,6 +82,9 @@ class Blockchain:
         Batches pending transactions, mints the coinbase block reward,
         executes Proof-of-Work, and commits the new block to the chain.
         """
+        if not isinstance(miner_address, str) or not miner_address.strip():
+            raise ValueError("miner_address must be a non-empty string")
+
         # Coinbase transaction (miner reward)
         reward_tx = Transaction(
             sender="COINBASE",
