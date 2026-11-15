@@ -1,7 +1,7 @@
 import hashlib
 import json
 import time
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Optional
 from .transaction import Transaction
 
 
