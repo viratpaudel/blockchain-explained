@@ -19,7 +19,7 @@ class Transaction:
         self.sender = sender
         self.recipient = recipient
         self.amount = round(float(amount), 8)
-        self.timestamp = timestamp or time.time()
+        self.timestamp = time.time() if timestamp is None else timestamp
         self.signature = signature
 
     def to_dict(self) -> Dict[str, Any]:
