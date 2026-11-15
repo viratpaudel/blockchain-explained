@@ -1,3 +1,4 @@
+import math
 import time
 from typing import List, Optional
 from .block import Block
@@ -8,6 +9,16 @@ class Blockchain:
     """Manages the distributed ledger chain, mining operations, and consensus validation."""
 
     def __init__(self, difficulty: int = 3, mining_reward: float = 50.0):
+        if not isinstance(difficulty, int) or isinstance(difficulty, bool) or difficulty < 0:
+            raise ValueError("difficulty must be a non-negative integer")
+        if (
+            not isinstance(mining_reward, (int, float))
+            or isinstance(mining_reward, bool)
+            or not math.isfinite(mining_reward)
+            or mining_reward < 0
+        ):
+            raise ValueError("mining_reward must be a finite, non-negative number")
+
         self.chain: List[Block] = []
         self.difficulty = difficulty
         self.mining_reward = mining_reward
