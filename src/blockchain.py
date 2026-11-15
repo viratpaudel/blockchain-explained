@@ -45,6 +45,16 @@ class Blockchain:
         if not transaction.is_valid():
             return False
 
+        transaction_hash = transaction.compute_hash()
+        if any(tx.compute_hash() == transaction_hash for tx in self.pending_transactions):
+            return False
+        if any(
+            tx.compute_hash() == transaction_hash
+            for block in self.chain
+            for tx in block.transactions
+        ):
+            return False
+
         sender_balance = self.get_balance(transaction.sender)
         pending_spend = sum(
             tx.amount for tx in self.pending_transactions
