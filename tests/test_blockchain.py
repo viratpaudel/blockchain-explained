@@ -95,6 +95,12 @@ class TestBlockchain(unittest.TestCase):
         self.chain.chain[1].transactions[0].amount = 9999.0
         self.assertFalse(self.chain.is_chain_valid())
 
+    def test_blockchain_helper_methods(self):
+        self.assertEqual(self.chain.get_chain_length(), 1)
+        self.assertEqual(self.chain.get_pending_count(), 0)
+        self.assertIsNotNone(self.chain.get_block_by_index(0))
+        self.assertIsNone(self.chain.get_block_by_index(99))
+
 
 if __name__ == "__main__":
     unittest.main()
