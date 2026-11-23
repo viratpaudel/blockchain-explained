@@ -175,3 +175,9 @@ class Blockchain:
     def get_pending_count(self) -> int:
         """Returns the number of transactions currently awaiting mining."""
         return len(self.pending_transactions)
+
+    def get_block_by_index(self, index: int) -> Optional[Block]:
+        """Returns the block at the specified index, or None if out of range."""
+        if 0 <= index < len(self.chain):
+            return self.chain[index]
+        return None
